@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Budget Calculator</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE</p>
+        <h1>Monthly Budget Calculator</h1>
+        <p class="subtitle">Manage your monthly income and keep your expenses under control.</p>
+      </div>
+      <div class="month-chip" id="monthLabel"></div>
+    </header>
+
+    <section class="summary-grid" aria-label="Budget summary">
+      <article class="summary-card income">
+        <div class="summary-label"><span class="icon">↗</span> Monthly Income</div>
+        <p class="summary-value" id="incomeSummary">LKR 0.00</p>
+      </article>
+      <article class="summary-card expenses">
+        <div class="summary-label"><span class="icon">↘</span> Total Expenses</div>
+        <p class="summary-value" id="expenseSummary">LKR 0.00</p>
+      </article>
+      <article class="summary-card balance">
+        <div class="summary-label"><span class="icon">◈</span> Remaining Balance</div>
+        <p class="summary-value" id="balanceSummary">LKR 0.00</p>
+      </article>
+    </section>
+
+    <div id="budgetMessage" class="budget-message" hidden></div>
+
+    <section class="modules">
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="module-tag">MODULE 1</p>
+            <h2>Income Management</h2>
+            <p class="description">Enter or update your monthly income.</p>
+          </div>
+          <span class="heading-icon">＋</span>
+        </div>
+        <form id="incomeForm">
+          <label for="monthlyIncome">Monthly Income (LKR)</label>
+          <input id="monthlyIncome" type="number" min="0.01" step="0.01" placeholder="e.g. 50000" required>
+          <button class="btn primary" type="submit">Save / Update Income</button>
+        </form>
+        <p class="helper">Your latest income amount is saved in this browser.</p>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="module-tag">MODULE 2</p>
+            <h2 id="expenseFormTitle">Add Expense</h2>
+            <p class="description">Record an expense with its amount and date.</p>
+          </div>
+          <span class="heading-icon">−</span>
+        </div>
+        <form id="expenseForm">
+          <label for="expenseName">Expense Name</label>
+          <input id="expenseName" type="text" maxlength="100" placeholder="e.g. Food, Transport, Bills" required>
+          <div class="two-fields">
+            <div>
+              <label for="expenseAmount">Amount (LKR)</label>
+              <input id="expenseAmount" type="number" min="0.01" step="0.01" placeholder="e.g. 2500" required>
+            </div>
+            <div>
+              <label for="expenseDate">Date</label>
+              <input id="expenseDate" type="date" required>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn primary" id="expenseSubmit" type="submit">Add Expense</button>
+            <button class="btn secondary" id="cancelEdit" type="button" hidden>Cancel</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="records-heading">
+        <div>
+          <p class="module-tag">MODULE 2</p>
+          <h2>Expense Records</h2>
+        </div>
+        <span class="record-count" id="recordCount">0 records</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Expense Name</th><th>Date</th><th>Amount</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="expenseRows"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">▤</div>
+        <h3>No expenses added yet</h3>
+        <p>Add your first expense using the form above.</p>
+      </div>
+    </section>
+
+    <footer>Monthly Budget Calculator <span>•</span> Frontend-only project</footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/script.js"></script>
+</body>
+</html>
